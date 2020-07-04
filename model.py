@@ -753,7 +753,7 @@ def refine_detections_graph(rois, probs, deltas, window, config):
     # Coordinates are normalized.
     detections = tf.concat([
         tf.gather(refined_rois, keep),
-        tf.cast(tf.gather(class_ids, keep), tf.float32)[..., tf.newaxis],
+        tf.dtypes.cast(tf.gather(class_ids, keep), 'float32', name='Cast_Float')[..., tf.newaxis],#tf.cast(tf.gather(class_ids, keep), tf.float32)[..., tf.newaxis],
         tf.gather(class_scores, keep)[..., tf.newaxis]
         ], axis=1)
 
